@@ -10,21 +10,58 @@ function preload() {
 }
 
 function setup() {
-  //count the columns
   print(table.getRowCount() + ' total rows in table');
   print(table.getColumnCount() + ' total columns in table');
 
   print(table.getColumn('future_city_2_source')); // gewünschte Daten werden Displayed in console.log
-  //["Goat", "Leopard", "Zebra"]
-  /*
-  //cycle through the table
-  for (let r = 0; r < table.getRowCount(); r++)
-    for (let c = 0; c < table.getColumnCount(); c++) {
-      print(table.getString(r, c));
-    }
-    */
 
- /* describe(`randomly generated text from a file,
-    for example "i smell like butter"`);*/
-    print(table.getString(2, 2)); // for loading a specific cell :)
+  
+
+}
+
+function draw (){
+  drawTemperaturePoints();
+  
+
+  //   for (let c = 0; c < table.getColumn('future_Annual_Precipitation'); r++) 
+  //   for (let c = 0; c < table.getColumn('current_city');  r++)
+  //     print(table.getString(r));
+  
+  
+  
+  // let m = map(table.getColumn('Annual_Mean_Temperature'), 0, 100, 0, width);
+  // ellipse(m, 50, 10, 10);
+
+}
+
+function drawTemperaturePoints() {
+  const meanTemps = table.getColumn('Annual_Mean_Temperature');
+  const annualTemp = table.getColumn('future_Annual_Precipitation');
+  console.log(meanTemps)
+  
+
+  // annual Mean Teamperature
+  for (let r = 0; r < meanTemps.length; r++) {
+    const temp = meanTemps[r];
+    const pixels = convertDegreesToPixels(temp);
+    console.log(temp, pixels);
+
+    circle(10, pixels, 10);
   }
+  // future annual precepitation
+  for (let c = 0; c < annualTemp.length; c++) {
+    const futuretemp = annualTemp[c];
+    
+    console.log (futuretemp, pixels);
+  }
+
+}
+
+function convertDegreesToPixels(temp) {
+  const pixels = map(temp, 0, 50, 200, 30);
+  return pixels;
+}
+function convertDegreesToPixels(futuretemp) {
+  const pixels = map(temp, 0, 50, 200, 30);
+  return pixels;
+}
