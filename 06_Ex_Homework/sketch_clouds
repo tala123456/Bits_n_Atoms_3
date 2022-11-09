@@ -1,0 +1,28 @@
+let cloudx = 100;
+let cloudy = 100;
+let _scale = 1;
+//var cloudw = 70;
+//var cloudh = 50;
+let blue = 189;
+
+function setup() {
+  createCanvas(800, 800);
+}
+
+function draw() {
+  background(155, 186, 100);
+
+  makeCloud(cloudx, cloudy-40, 1);
+  makeCloud(cloudx + 100, cloudy + 100, 2)
+  fill(220)
+  noStroke();
+
+}
+
+function makeCloud(cloudx, cloudy, _scale) {
+  fill(250)
+  noStroke();
+  ellipse(cloudx, cloudy, _scale*70, _scale*50);
+  ellipse(cloudx + 10, cloudy + 10, _scale*70, _scale*50);
+  ellipse(cloudx - 20, cloudy + 10, _scale*70, _scale*50);
+}
