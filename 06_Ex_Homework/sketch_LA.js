@@ -10,14 +10,11 @@ let cloudx = 100;
 let cloudy = 100;
 let _scale = 1;
 
-// for font 
-let myFont;
-
 
 // https://p5js.org/reference/#/p5/loadTable
 function preload() {
   table = loadTable('future_cities_data_truncated.csv', 'csv', 'header');
-  myFont = loadFont('assets/PlayfairDisplay/PlayfairDisplay-Black.ttf'); 
+  
 }
 
 // map()
@@ -33,9 +30,8 @@ function setup() {
   print(table.getColumnCount() + ' total columns in table');
   print('All cities:', table.getColumn('current_city'));
 
-  for (let i = 0; i < table.getColumn('current_city').length; i++) {
+  for (let i = 0; i < 4; i++) {
     const city = table.get(i, 'current_city');
-    console.log(city);
     const wettestMonth = table.get(i, 'Precipitation_of_Wettest_Month');
     const futurewettestMonth = table.get(i, 'future_Precipitation_of_Wettest_Month');
 
@@ -46,17 +42,12 @@ function setup() {
 
     
     // console.log(change);
-    push();
-  textFont(myFont);
-  fill ('#000000');
+
     text(city, 
          20,
-         100 + 100 * i++, 
+         100 + 100 * i, 
          80, 
          30);
-         pop(); 
-      
-       
 
     var circleSize = map(wettestMonth, 
                          56, // lowest from all
@@ -64,11 +55,8 @@ function setup() {
                          20, // smallest circle
                          130); // largest circle
 
-    fill ('#2EDFF2'); 
-    noStroke()
+
     ellipse(120, 100 + 100 * i, circleSize);
-    
-    
     // var change =  futurewettestMonth / wettestMonth
 
     // const change = table.get(i, "rel_change_Precipitation_of_Wettest_Month");
@@ -78,19 +66,11 @@ function setup() {
       178, // highest from all
       20, // smallest circle
       130); // largest circle
-
-    
-
     // console.log(wettestMonth * change)
-    fill ('#A64600');
-    noStroke();
     ellipse(220, 100 + 100 * i, circleSize2);
-    //ellipse(240, 120 + 100 * i, circleSize2 * 1.75);
-   // ellipse(230, 90 + 100 * i, circleSize2 * 1.5);
-   
+    ellipse(240, 120 + 100 * i, circleSize2 * 1.75);
+    ellipse(230, 90 + 100 * i, circleSize2 * 1.5);
 
-
-   // cloud function
     // makeCloud(120, 100 + 100 * i, circleSize);
     // fill(159, 115, 171);
     // makeCloud(220, 100 + 100 * i, circleSize2)
