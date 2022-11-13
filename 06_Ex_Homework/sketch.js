@@ -22,8 +22,8 @@ function preload() {
 // map()
 
 function setup() {
-  createCanvas(1000, 1000);
-  background('#D4B8B1');
+  createCanvas(windowWidth, windowHeight);
+  background('#373737');
 
   const barMargin = 10;
   const barHeight = 30;
@@ -83,10 +83,12 @@ function setup() {
 
  
    // cloud function
-   fill(205, 140, 140, 150);
+   //translate(windowWidth/2, 0); // translate für Mittige Platzierung
+  
+   fill(252, 230, 148, 150);
    makeCloud(120, 100 + 100 * i, circleSize);
    
-    fill(83, 51, 31, 150);
+    fill(193, 219, 227, 150);
     makeCloud(220, 100 + 100 * i, circleSize2);
     
     noStroke();
@@ -97,7 +99,7 @@ function setup() {
     push();
     textFont(myFont);
     textSize(18);
-    fill ('black');
+    fill ('white');
       text(city, 
            135,
            90 + 100 * i, 
