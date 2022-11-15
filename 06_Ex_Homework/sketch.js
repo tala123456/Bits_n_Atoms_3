@@ -48,7 +48,6 @@ function setup() {
     // console.log(change);
 
       
-       
 
     var circleSize = map(wettestMonth, 
                          56, // lowest from all
@@ -86,26 +85,25 @@ function setup() {
    //translate(windowWidth/2, 0); // translate für Mittige Platzierung
   
    fill(252, 230, 148, 150);
-   makeCloud(120, 100 + 100 * i, circleSize);
+   makeCloud(width/2-50, 100 + 100 * i, circleSize);
    
     fill(193, 219, 227, 150);
-    makeCloud(220, 100 + 100 * i, circleSize2);
+    makeCloud(width/2+50, 100 + 100 * i, circleSize2);
     
     noStroke();
 
 
 
 
-    push();
     textFont(myFont);
     textSize(18);
+    textAlign(CENTER);
     fill ('white');
       text(city, 
-           135,
+           width/2-40,
            90 + 100 * i, 
            80, 
            30);
-           pop(); 
    
   }
 
@@ -114,12 +112,6 @@ function setup() {
 function draw() {
   // const meanTemps = table.getColumn('Annual_Mean_Temperature');
   // const annualTemp = table.getColumn('future_Annual_Precipitation');
-
-
-  
-
-
-
 }
 
 // function to make clouds out of ellipse
