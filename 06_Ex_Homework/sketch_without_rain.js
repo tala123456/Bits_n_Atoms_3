@@ -8,19 +8,22 @@ let table;
 // for clouds
 let cloudx = 100;
 let cloudy = 100;
-let _scale = 1;
+
+// for font 
+let myFont;
 
 
 // https://p5js.org/reference/#/p5/loadTable
 function preload() {
   table = loadTable('future_cities_data_truncated.csv', 'csv', 'header');
-  
+  myFont = loadFont('assets/PlayfairDisplay/PlayfairDisplay-Black.ttf'); 
 }
 
 // map()
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(windowWidth, windowHeight);
+  background('#373737');
 
   const barMargin = 10;
   const barHeight = 30;
@@ -30,8 +33,9 @@ function setup() {
   print(table.getColumnCount() + ' total columns in table');
   print('All cities:', table.getColumn('current_city'));
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < table.getColumn('current_city').length; i++) {
     const city = table.get(i, 'current_city');
+    console.log(city);
     const wettestMonth = table.get(i, 'Precipitation_of_Wettest_Month');
     const futurewettestMonth = table.get(i, 'future_Precipitation_of_Wettest_Month');
 
@@ -43,11 +47,7 @@ function setup() {
     
     // console.log(change);
 
-    text(city, 
-         20,
-         100 + 100 * i, 
-         80, 
-         30);
+      
 
     var circleSize = map(wettestMonth, 
                          56, // lowest from all
@@ -55,8 +55,11 @@ function setup() {
                          20, // smallest circle
                          130); // largest circle
 
-
-    ellipse(120, 100 + 100 * i, circleSize);
+   // fill ('#2EDFF2'); 
+   // noStroke()
+   // ellipse(120, 100 + 100 * i, circleSize);
+    
+    
     // var change =  futurewettestMonth / wettestMonth
 
     // const change = table.get(i, "rel_change_Precipitation_of_Wettest_Month");
@@ -66,17 +69,42 @@ function setup() {
       178, // highest from all
       20, // smallest circle
       130); // largest circle
-    // console.log(wettestMonth * change)
-    ellipse(220, 100 + 100 * i, circleSize2);
-    ellipse(240, 120 + 100 * i, circleSize2 * 1.75);
-    ellipse(230, 90 + 100 * i, circleSize2 * 1.5);
 
-    // makeCloud(120, 100 + 100 * i, circleSize);
-    // fill(159, 115, 171);
-    // makeCloud(220, 100 + 100 * i, circleSize2)
-    // fill(63, 59, 108);
-    // noStroke();
     
+
+    // console.log(wettestMonth * change)
+    fill ('#D4B8B1');
+    noStroke();
+  //  ellipse(220, 100 + 100 * i, circleSize2);
+    //ellipse(240, 120 + 100 * i, circleSize2 * 1.75);
+   // ellipse(230, 90 + 100 * i, circleSize2 * 1.5);
+   
+
+ 
+   // cloud function
+   //translate(windowWidth/2, 0); // translate für Mittige Platzierung
+  
+   fill(252, 230, 148, 150);
+   makeCloud(width/2-50, 100 + 100 * i, circleSize);
+   
+    fill(193, 219, 227, 150);
+    makeCloud(width/2+50, 100 + 100 * i, circleSize2);
+    
+    noStroke();
+
+
+
+
+    textFont(myFont);
+    textSize(18);
+    textAlign(CENTER);
+    fill ('white');
+      text(city, 
+           width/2-40,
+           90 + 100 * i, 
+           80, 
+           30);
+   
   }
 
 }
@@ -86,17 +114,14 @@ function draw() {
   // const annualTemp = table.getColumn('future_Annual_Precipitation');
 
 
-  
-
-
-
 }
 
 // function to make clouds out of ellipse
-function makeCloud(cloudx, cloudy, _scale) {
+function makeCloud(cloudx, cloudy, size) {
   //fill(63, 59, 108);
   noStroke();
-  ellipse(cloudx, cloudy, _scale*70, _scale);
-  ellipse(cloudx + 10, cloudy + 10, _scale, _scale);
-  ellipse(cloudx - 20, cloudy + 10, _scale, _scale);
+  ellipse(cloudx, cloudy, size, size);
+  ellipse(cloudx + 10, cloudy + 0.2, size, size);
+  ellipse(cloudx - 20, cloudy + 10, size, size);
+  ellipse(cloudx - 10, cloudy -15, size, size);
 }

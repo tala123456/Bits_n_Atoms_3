@@ -1,13 +1,20 @@
 var drop = [];
+let slider;
 
 function setup(){
-    createCanvas(windowWidth, windowHeight);
+    //rain
     drop = new Drop();
 
     for (var i = 0; i < 100; i++) {
         drop[i] = new Drop();
 
     }
+
+    //slider
+    slider = createSlider(10, 50);
+    slider.position(10, 10);
+    slider.style('width', '80px');
+  
 
 }
 
@@ -17,9 +24,14 @@ function draw() {
    
     for (var i = 0; i < 100; i++) {
          drop[i].show();
-         drop[i].update();
+         drop[i].rain(slider.value());
 
     }
+
+    // slider
+    //let val = slider.value();
+    //this.rain('0%', '100%');
+
 }
  
 function Drop() {
@@ -29,12 +41,15 @@ function Drop() {
     this.show = function() {
     fill(255);
     noStroke();
-    ellipse(this.x, this.y, (this.size = random (2, 3)), (this.size = random (8, 10)));
+    ellipse(this.x, this.y, (this.size = random (2, 4)), (this.size = random (8, 10)));
 
     }
 
-    this.update = function() {
-        this.y = this.y + 8;
+    this.rain = function(slider) {
+        this.slider = slider;
+        this.speed = slider;
+        this.y = this.y + this.speed;
+
 
         if (this.y > height) {
             this.y = random (0, -height);
