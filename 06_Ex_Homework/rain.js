@@ -24,12 +24,12 @@ function draw() {
  
 function Drop() {
     this.x = random (0, width);
-    this.y = 30;
+    this.y = random (0, -height);
 
     this.show = function() {
     fill(255);
     noStroke();
-    ellipse(this.x, this.y, 2, 10);
+    ellipse(this.x, this.y, (this.size = random (2, 3)), (this.size = random (8, 10)));
 
     }
 
@@ -37,7 +37,7 @@ function Drop() {
         this.y = this.y + 8;
 
         if (this.y > height) {
-            this.y = 0;
+            this.y = random (0, -height);
 
         }
 
