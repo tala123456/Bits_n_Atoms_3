@@ -28,9 +28,6 @@ function draw() {
 
     }
 
-    // slider
-    //let val = slider.value();
-    //this.rain('0%', '100%');
 
 }
  

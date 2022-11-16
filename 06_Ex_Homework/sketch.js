@@ -18,7 +18,7 @@ let slider;
 // load table
 function preload() {
   table = loadTable('future_cities_data_truncated.csv', 'csv', 'header');
-  myFont = loadFont('assets/PlayfairDisplay/PlayfairDisplay-Black.ttf'); 
+  myFont = loadFont('assets/Courier_Prime/CourierPrime-Bold.ttf'); 
 }
 
 
@@ -38,9 +38,10 @@ function setup() {
    }
 
    //slider
-   slider = createSlider(10, 20);
+   slider = createSlider(10, 18, 10); // last number is for starting position
    slider.position(20, 40);
    slider.style('width', '80px');
+   slider.style('background', '#5500cc')
  
 
 
@@ -50,13 +51,12 @@ function setup() {
   print(table.getColumnCount() + ' total columns in table');
   print('All cities:', table.getColumn('current_city'));
 
-  
-
 }
 
 function draw() {
+  
+  // for drawing rain
   background(100);
-   
     for (var i = 0; i < 100; i++) {
          drop[i].show();
          drop[i].rain(slider.value());
@@ -64,7 +64,7 @@ function draw() {
     }
 
 
-
+    // for acess data table
     for (let i = 0; i < table.getColumn('current_city').length; i++) {
       const city = table.get(i, 'current_city');
       console.log(city);
@@ -108,10 +108,7 @@ function draw() {
       fill(193, 219, 227, 150);
       makeCloud(width/2+50, 100 + 100 * i, circleSize2);
       
-      noStroke();
-  
-  
-  
+      noStroke(); 
   
       textFont(myFont);
       textSize(18);
@@ -124,9 +121,14 @@ function draw() {
              30);
      
     }
-
-
-
+    // title
+    textSize (25);
+    text ('actual and future Precipitation'.toUpperCase(), windowWidth/2, 40)
+  
+    textAlign(LEFT);
+    textSize (12);
+    text ('rain speed', 24, 30)
+  
 
 }
 
