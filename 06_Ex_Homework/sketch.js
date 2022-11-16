@@ -38,7 +38,7 @@ function setup() {
    }
 
    //slider
-   slider = createSlider(10, 18, 10); // last number is for starting position
+   slider = createSlider(8, 13, 8); // last number is for starting position
    slider.position(20, 40);
    slider.style('width', '80px');
    slider.style('background', '#5500cc')
@@ -157,7 +157,8 @@ function Drop() {
   this.rain = function(slider) {
       this.slider = slider;
       this.speed = slider;
-      this.y = this.y + this.speed;
+      this.gravity = 1.05;
+      this.y = this.y + this.speed*this.gravity;
 
 
       if (this.y > height) {
